@@ -25,6 +25,7 @@ contract Identity
 
     function setAge() public 
     {
-        age=age+1;
+        age=age+2;
     }
 }
+
