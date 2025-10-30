@@ -28,3 +28,5 @@ contract Identity
         age=age+2;
     }
 }
+
+// remove identity contract
