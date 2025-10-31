@@ -2,21 +2,17 @@
 pragma solidity ^0.8.17;
 
 /**
- * @title SupplyChainTracker
- * @author
- * @notice Simple supply-chain tracking with roles, events and product history.
- * Roles: DEFAULT_ADMIN_ROLE (owner), MANUFACTURER, TRANSPORTER, WAREHOUSE, RETAILER
- *
- * Functions:
- * - createProduct (manufacturer)
- * - assignTransporter / transferOwnership (controlled transitions)
- * - updateLocationAndStatus (by current actor role)
- * - receiveAtWarehouse / deliverToRetailer / recallProduct
- * - view product & history
- *
- * This is a base implementation — extend as per on-chain/off-chain integration,
- * tokenization (ERC721) or privacy needs.
- */
+ Roles: DEFAULT_ADMIN_ROLE (owner), MANUFACTURER, TRANSPORTER, WAREHOUSE, RETAILER
+ Functions:
+ - createProduct (manufacturer)
+ - assignTransporter / transferOwnership (controlled transitions)
+ - updateLocationAndStatus (by current actor role)
+ - receiveAtWarehouse / deliverToRetailer / recallProduct
+ - view product & history
+
+ This is a base implementation — extend as per on-chain/off-chain integration,
+ tokenization (ERC721) or privacy needs.
+*/
 
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
@@ -104,9 +100,7 @@ contract SupplyChainTracker is AccessControl {
 
     // ---------- Product lifecycle ----------
     /**
-     * @notice Manufacturer creates product on-chain.
-     * @param sku - SKU / barcode
-     * @param description - human readable description
+     notice Manufacturer creates product on-chain.
      */
     function createProduct(string calldata sku, string calldata description, string calldata location, string calldata note)
         external
@@ -141,8 +135,8 @@ contract SupplyChainTracker is AccessControl {
     }
 
     /**
-     * @notice Transfer to a transporter (or any address) - for shipping
-     * Caller must be current owner (or admin)
+     notice Transfer to a transporter (or any address) - for shipping
+     Caller must be current owner (or admin)
      */
     function transferTo(uint256 productId, address to, string calldata roleLabel, string calldata location, string calldata note)
         external
@@ -172,7 +166,7 @@ contract SupplyChainTracker is AccessControl {
     }
 
     /**
-     * @notice Update status & location by authorized actors (transporter/warehouse/retailer/manufacturer/admin)
+     Update status & location by authorized actors (transporter/warehouse/retailer/manufacturer/admin)
      */
     function updateLocationAndStatus(
         uint256 productId,
@@ -210,7 +204,7 @@ contract SupplyChainTracker is AccessControl {
     }
 
     /**
-     * @notice Mark product as received in a warehouse (warehouse role)
+     notice Mark product as received in a warehouse (warehouse role)
      */
     function receiveAtWarehouse(uint256 productId, string calldata location, string calldata note)
         external
@@ -234,7 +228,7 @@ contract SupplyChainTracker is AccessControl {
     }
 
     /**
-     * @notice Deliver to retailer (retailer role)
+     notice Deliver to retailer (retailer role)
      */
     function deliverToRetailer(uint256 productId, string calldata location, string calldata note)
         external
@@ -258,7 +252,7 @@ contract SupplyChainTracker is AccessControl {
     }
 
     /**
-     * @notice Recall product (admin/manufacturer)
+     notice Recall product (admin/manufacturer)
      */
     function recallProduct(uint256 productId, string calldata reason)
         external
@@ -383,3 +377,4 @@ contract SupplyChainTracker is AccessControl {
         emit HistoryAdded(productId, msg.sender, "ADMIN", "", "adminForceUpdate", newStatus);
     }
 }
+
