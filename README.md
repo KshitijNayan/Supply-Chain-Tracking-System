@@ -40,6 +40,24 @@ ERC-721 for unique assets, if NFTs are used to represent items
 Utils.sol (optional)
 Utility functions, modifiers, and helpers
 
+<--Sample flow (quick)-->
+
+Admin deploy contract (or give admin address in constructor).
+
+Admin grants roles (manufacturer, transporter, warehouse, retailer) to addresses.
+
+Manufacturer calls createProduct(sku, desc, location, note) → product created with id.
+
+Manufacturer transferTo(productId, transporterAddress, "TRANSFER", loc, "Pickup").
+
+Transporter updateLocationAndStatus(productId, loc, "In transit", Status.InTransit) periodically.
+
+Warehouse calls receiveAtWarehouse(productId, loc, "Arrived").
+
+Warehouse transfers to retailer or retailer calls deliverToRetailer.
+
+Admin/manufacturer can recallProduct if needed.
+
 
 <--Notes, security & extensions-->
 
