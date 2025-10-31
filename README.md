@@ -72,3 +72,6 @@ Upgradability: for production, consider proxy patterns (UUPS/Transparent) if you
 Access: currentOwner logic is simple — adjust to business logic (e.g., allow only specific roles to accept deliveries).
 
 Testing: write unit tests (Hardhat/Foundry), simulate role grants and full lifecycle.
+
+
+<img width="2559" height="1172" alt="image" src="https://github.com/user-attachments/assets/e58e04aa-c337-4d29-8e75-b90c0ca44456" />
