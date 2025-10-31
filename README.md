@@ -39,3 +39,18 @@ ERC-721 for unique assets, if NFTs are used to represent items
 
 Utils.sol (optional)
 Utility functions, modifiers, and helpers
+
+
+<--Notes, security & extensions-->
+
+Gas: history arrays grow on-chain — long histories cost gas. Consider storing large history off-chain (IPFS) and only storing hashes on-chain.
+
+Privacy: data is public on-chain. For sensitive data, encrypt off-chain and store pointer on-chain.
+
+Tokenization: agar chahiye to each product can be an ERC-721 token (unique IDs) so marketplaces/wallets easily track ownership.
+
+Upgradability: for production, consider proxy patterns (UUPS/Transparent) if you need future upgrades.
+
+Access: currentOwner logic is simple — adjust to business logic (e.g., allow only specific roles to accept deliveries).
+
+Testing: write unit tests (Hardhat/Foundry), simulate role grants and full lifecycle.
