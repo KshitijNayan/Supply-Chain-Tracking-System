@@ -1,10 +1,5 @@
 // scripts/deploy.js
 
-/**
- * Hardhat deployment script for SupplyChainTracker.sol
- * * Usage: npx hardhat run scripts/deploy.js --network <network-name>
- */
-
 const { ethers } = require("hardhat");
 
 async function main() {
@@ -63,3 +58,4 @@ main().catch((error) => {
     console.error(error);
     process.exitCode = 1;
 });
+
